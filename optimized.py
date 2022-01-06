@@ -29,7 +29,7 @@ invest = 500 * 100
 # Initialize matrice
 matrice = [[0 for i in range(invest + 1)] for i in range(len(liste_totale) + 1)]
 
-for i in range(1, len(liste_totale) + 1):
+for i in tqdm(range(1, len(liste_totale) + 1)):
     action = liste_totale[i - 1]
     for cost in range(1, invest + 1):
         if action.cost <= cost:
