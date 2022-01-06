@@ -1,7 +1,6 @@
 from itertools import combinations
 import csv
 from tqdm import tqdm
-from memory_profiler import profile
 
 liste_totale = []
 csv_file = open('tableau_test.csv', newline='', encoding = 'latin1')
@@ -26,4 +25,6 @@ for i in tqdm(range(1, len(liste_totale) + 1)):
                 best_option_cost = cost
                 best_option_gain = gain
                 best_option = liste_action
-print(best_option, best_option_cost, best_option_gain)
+for option in best_option:
+    print(option[0], option[1], option[2])
+print(best_option_cost, best_option_gain)

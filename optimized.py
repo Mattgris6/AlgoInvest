@@ -10,16 +10,19 @@ class Action():
         self.gain = round(self.cost * self.percent / 100, 2)
         self.real_cost = int(float(row[1]))
         self.real_gain = round(self.real_cost * self.percent / 100, 2)
+# Open csv and add actions into a list
 liste_totale = []
-csv_file = open('dataset1_Python+P7.csv', newline='', encoding = 'latin1')
-csv_reader = csv.reader(csv_file, delimiter=',')
+csv_file = open('tableau_test.csv', newline='', encoding = 'latin1')
+csv_reader = csv.reader(csv_file, delimiter=';')
 header = next(csv_reader)
 # Check file as empty
 if header != None:
     for row in csv_reader:
         if int(float(row[1]) * 100) > 0:
             liste_totale.append(Action(row))
+# Invest in cents to avoid point
 invest = 500 * 100
+# Initialize matrice
 matrice = [[0 for i in range(invest + 1)] for i in range(len(liste_totale) + 1)]
 
 for i in range(1, len(liste_totale) + 1):
