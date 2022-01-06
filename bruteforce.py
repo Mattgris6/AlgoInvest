@@ -1,7 +1,9 @@
 from itertools import combinations
 import csv
 from tqdm import tqdm
+import time
 
+start = time.time()
 liste_totale = []
 csv_file = open('tableau_test.csv', newline='', encoding = 'latin1')
 csv_reader = csv.reader(csv_file, delimiter=';')
@@ -27,4 +29,8 @@ for i in tqdm(range(1, len(liste_totale) + 1)):
                 best_option = liste_action
 for option in best_option:
     print(option[0], option[1], option[2])
-print(best_option_cost, best_option_gain)
+print("Somme investie :", round(best_option_cost, 2))
+print("Gains :", round(best_option_gain, 2))
+# print("Rendement: ", round(best_option_gain/best_option_cost * 100, 2))
+end = time.time()
+print("Temps de traitement : ", end - start)

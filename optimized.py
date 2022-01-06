@@ -1,25 +1,29 @@
 from itertools import combinations
 import csv
 from tqdm import tqdm
+import time
 
 class Action():
     def __init__(self, row):
         self.name = row[0]
         self.cost = int(float(row[1]) * 100)
         self.percent = float(row[2])
-        self.gain = round(self.cost * self.percent / 100, 2)
-        self.real_cost = int(float(row[1]))
+        self.gain = self.cost * self.percent / 100
+        self.real_cost = float(row[1])
         self.real_gain = round(self.real_cost * self.percent / 100, 2)
+# Start time
+start = time.time()
 # Open csv and add actions into a list
 liste_totale = []
-csv_file = open('tableau_test.csv', newline='', encoding = 'latin1')
-csv_reader = csv.reader(csv_file, delimiter=';')
+csv_file = open('dataset2_Python+P7.csv', newline='', encoding = 'latin1')
+csv_reader = csv.reader(csv_file, delimiter=',')
 header = next(csv_reader)
 # Check file as empty
 if header != None:
     for row in csv_reader:
         if int(float(row[1]) * 100) > 0:
             liste_totale.append(Action(row))
+print(len(liste_totale), "actions traitées")
 # Invest in cents to avoid point
 invest = 500 * 100
 # Initialize matrice
@@ -48,4 +52,8 @@ total_cost = sum([action.real_cost for action in results])
 total_gain = sum([action.real_gain for action in results])
 for action in results:
     print(action.name, action.real_cost, action.real_gain)
-print(total_cost, total_gain)
+print("Somme investie :", round(total_cost, 2))
+print("Gains :", round(total_gain, 2))
+# print("Rendement :", round(total_gain / total_cost * 100, 2), "%")
+end = time.time()
+print("Temps de traitement : ", end - start)
