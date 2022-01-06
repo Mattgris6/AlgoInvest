@@ -6,7 +6,7 @@ import time
 start = time.time()
 liste_totale = []
 csv_file = open('tableau_test.csv', newline='', encoding = 'latin1')
-csv_reader = csv.reader(csv_file, delimiter=';')
+csv_reader = csv.reader(csv_file, delimiter=',')
 header = next(csv_reader)
 # Check file as empty
 if header != None:
